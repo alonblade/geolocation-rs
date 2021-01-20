@@ -1,0 +1,22 @@
+❯ curl -i -X POST -d "{"wifiAccessPoints":[{"macAddress":"78-0c-f0-58-78-6d","signalStrength":-66}]}" https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAeBuGRUrxHr4_eHhrCwdkl0G-O4qR5UXs
+HTTP/2 200 
+content-type: application/json; charset=UTF-8
+vary: X-Origin
+vary: Referer
+vary: Origin,Accept-Encoding
+date: Wed, 20 Jan 2021 10:05:15 GMT
+server: scaffolding on HTTPServer2
+cache-control: private
+x-xss-protection: 0
+x-frame-options: SAMEORIGIN
+x-content-type-options: nosniff
+alt-svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+accept-ranges: none
+
+{
+  "location": {
+    "lat": 32.8246373,
+    "lng": 35.0057587
+  },
+  "accuracy": 4487
+}

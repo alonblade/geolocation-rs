@@ -21,7 +21,7 @@ use rocket::response::content;
 #[post("/")]
 
 fn index() -> content::Json<&'static str> {
-    //32.81780/35.00208
+    println!("requested position");
     content::Json(r#"{
   "location": {
     "lat": 32.81780,

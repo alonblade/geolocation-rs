@@ -4,6 +4,13 @@
 
 use rocket::response::content;
 
+use std::process::Command;
+
+use std::fs::OpenOptions;
+use std::io::prelude::*;
+use std::time::SystemTime;
+use std::env;
+
 // Example request from firefox:
 // POST / HTTP/1.1
 // Host: 127.0.0.1:9999
@@ -22,6 +29,25 @@ use rocket::response::content;
 
 fn index() -> content::Json<&'static str> {
     println!("requested position");
+    Command::new("notify-send")
+        .arg("position-requested")
+        .output().unwrap();
+
+    let location = format!("{}/.geolocation_rs_history", env::var("HOME").unwrap());
+
+    let mut file = OpenOptions::new()
+        .write(true)
+        .append(true)
+        .create(true)
+        .open(location)
+        .unwrap();
+    let now = SystemTime::now();
+
+    if let Err(_e) = writeln!(file, "{:?}", now) {
+        // ignore errors
+    }
+
+    // I really want unwrap_or_else and just silently ignore but I don't know how...
     content::Json(r#"{
   "location": {
     "lat": 32.81780,

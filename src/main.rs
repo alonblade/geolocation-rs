@@ -8,8 +8,9 @@ use std::process::Command;
 
 use std::fs::OpenOptions;
 use std::io::prelude::*;
-use std::time::SystemTime;
 use std::env;
+
+use chrono::{DateTime, Utc};
 
 // Example request from firefox:
 // POST / HTTP/1.1
@@ -41,9 +42,9 @@ fn index() -> content::Json<&'static str> {
         .create(true)
         .open(location)
         .unwrap();
-    let now = SystemTime::now();
+    let now = Utc::now();
 
-    if let Err(_e) = writeln!(file, "{:?}", now) {
+    if let Err(_e) = writeln!(file, "{}", now) {
         // ignore errors
     }
 
